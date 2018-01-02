@@ -249,8 +249,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EnvironmentName Include="Debug" />
-    <EnvironmentName Include="Release" />
+    <Environment Include="$(SolutionDir)\Accounting\web.*.config" Exclude="$(SolutionDir)\Accounting\web.config"/>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -297,6 +296,6 @@
 
   <UsingTask TaskName="TransformXml" AssemblyFile="$(SolutionDir)\packages\MSBuild.Microsoft.VisualStudio.Web.targets.14.0.0.3\tools\VSToolsPath\Web\Microsoft.Web.Publishing.Tasks.dll" />
   <Target Name="AfterBuild">
-    <TransformXML Source="web.config" Transform="web.$(EnvironmentName).config" Destination="configs\web.$(EnvironmentName).config" />
+    <TransformXML Source="$(SolutionDir)\Accounting\web.config" Transform="$(Environment)" Destination="$(SolutionDir)\Accounting\configs\$(Environment)" />
   </Target>
 </Project>

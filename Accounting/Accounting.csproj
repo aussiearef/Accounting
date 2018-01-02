@@ -296,6 +296,6 @@
 
   <UsingTask TaskName="TransformXml" AssemblyFile="$(SolutionDir)\packages\MSBuild.Microsoft.VisualStudio.Web.targets.14.0.0.3\tools\VSToolsPath\Web\Microsoft.Web.Publishing.Tasks.dll" />
   <Target Name="AfterBuild">
-    <TransformXML Source="$(SolutionDir)\Accounting\web.config" Transform="%(Environment.Identity)" Destination="$(SolutionDir)\Accounting\configs\%(Environment.Identity)" />
+    <TransformXML Source="$(SolutionDir)Accounting\web.config" Transform="%(Environment.Identity)" Destination="$(SolutionDir)Accounting\configs\%(Environment.Identity)" />
   </Target>
 </Project>

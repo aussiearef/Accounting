@@ -296,8 +296,13 @@
   </Target>
   <Target Name="AfterBuild">
   </Target> -->
+  <Target Name="CreateTransformedConfigDir"  AfterTargets="PipelineDeployPhase" >
+    <MakeDir Directories="$(PublishUrl)\TransformedConfigs" />
+  </Target>
+  
   <UsingTask TaskName="TransformXml" AssemblyFile="$(SolutionDir)\packages\MSBuild.Microsoft.VisualStudio.Web.targets.14.0.0.3\tools\VSToolsPath\Web\Microsoft.Web.Publishing.Tasks.dll" />
-  <Target Name="ConfigTransformations" AfterTargets="CopyAllFilesToSingleFolderForPackage">
-    <TransformXML Source="web.config" Transform="web.%(Environments.Identity).config" Destination="TransformedConfigs\web.%(Environments.Identity).config" />
+  
+  <Target Name="ConfigTransformations" AfterTargets="CreateTransformedConfigDir" >
+    <TransformXML Source="web.config" Transform="web.%(Environments.Identity).config" Destination="$(PublishUrl)\TransformedConfigs\web.%(Environments.Identity).config" />
   </Target>
 </Project>

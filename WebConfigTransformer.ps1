@@ -9,7 +9,7 @@
 
     Write-Output $solution_dir
 
-    Add-Type -LiteralPath "$solution_dir\packages\MSBuild.Microsoft.VisualStudio.Web_WebApplication.Targets.12.0.2\tools\VSToolsPath\Web\Microsoft.Web.XmlTransform.dll"
+    Add-Type -LiteralPath "$solution_dir\packages\MSBuild.Microsoft.VisualStudio.Web.targets.14.0.0.3\tools\VSToolsPath\Web\Microsoft.Web.XmlTransform.dll"
 
     
     New-Item -ItemType directory -Path "$output_path\TransformedConfigs" -Force

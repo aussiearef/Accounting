@@ -6,7 +6,7 @@ namespace Accounting.Tests.Controllers
     [TestFixture]
     public class HomeControllerTest
     {
-        [TestCase]
+        [Test]
         public void Index()
         {
             var controller = new HomeController();

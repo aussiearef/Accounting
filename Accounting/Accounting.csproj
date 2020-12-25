@@ -26,6 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,6 +46,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -106,10 +110,6 @@
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
-    </Reference>
-    <Reference Include="Antlr3.Runtime">
-      <Private>True</Private>
-      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -209,13 +209,12 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="web.Production.config" >
+    <Content Include="web.Production.config">
       <DependentUpon>Web.Config</DependentUpon>
-      </Content>
-    <Content Include="web.QA.config" >
+    </Content>
+    <Content Include="web.QA.config">
       <DependentUpon>Web.config</DependentUpon>
-      </Content>
-    
+    </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -243,7 +242,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -256,12 +254,10 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
-
   <ItemGroup>
     <Environments Include="QA" />
     <Environments Include="Production" />
   </ItemGroup>
-  
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -304,15 +300,11 @@
   </Target>
   <Target Name="AfterBuild">
   </Target> -->
-
   <Target Name="AfterBuild">
-    <MakeDir Directories="$(PublishUrl)\TransformedConfigs"  />
+    <MakeDir Directories="$(PublishUrl)\TransformedConfigs" />
   </Target>
-  
   <UsingTask TaskName="TransformXml" AssemblyFile="$(SolutionDir)\packages\MSBuild.Microsoft.VisualStudio.Web_WebApplication.Targets.12.0.2\tools\VSToolsPath\Web\Microsoft.Web.Publishing.Tasks.dll" />
-
-  <Target Name="ConfigTransformations" AfterTargets="AfterBuild" >
-    <TransformXML Source="web.config" Transform="web.%(Environments.Identity).config" 
-                  Destination="$(PublishUrl)\TransformedConfigs\web.%(Environments.Identity).config" />
+  <Target Name="ConfigTransformations" AfterTargets="AfterBuild">
+    <TransformXML Source="web.config" Transform="web.%(Environments.Identity).config" Destination="$(PublishUrl)\TransformedConfigs\web.%(Environments.Identity).config" />
   </Target>
 </Project>
